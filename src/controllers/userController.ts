@@ -1,4 +1,6 @@
 import {IncomingMessage, ServerResponse} from "node:http";
+import {getUsersController} from "./getUsersController";
+import {getUserByIdController} from "./getUserByIdController";
 
 export const userController = (req: IncomingMessage, res: ServerResponse, userId: string) => {
     // will be parsing here by status
@@ -6,6 +8,11 @@ export const userController = (req: IncomingMessage, res: ServerResponse, userId
         //api/users
         //api/users/{userId}
         case 'GET': {
+            if (userId) {
+                getUserByIdController({ userId }, res);
+            } else {
+                getUsersController(res);
+            }
             break;
         }
         //api/users
@@ -18,5 +25,4 @@ export const userController = (req: IncomingMessage, res: ServerResponse, userId
             break;
         }
     }
-    return res.end(JSON.stringify({message: "Test"}));
 };
