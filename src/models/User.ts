@@ -15,3 +15,28 @@ export const createUser = (username: string, age: number, hobbies: string[]): Us
     users.push(newUser);
     return newUser;
 }
+
+export const updateUser = (newUserData: Partial<User>, userId: string) => {
+    let foundUserIndex = users.findIndex(user => user.id === userId)!;
+    users[foundUserIndex] = {
+        ...users[foundUserIndex],
+        ...newUserData,
+        hobbies: newUserData?.hobbies || users[foundUserIndex].hobbies
+    };
+    return users[foundUserIndex];
+};
+
+
+export const deleteUser = (userId: string) => {
+    const deleteIndex = users.findIndex((u) => u.id === userId)
+    if (deleteIndex === -1) {
+       return ({
+           success: false
+       })
+    }
+
+    users.splice(deleteIndex, 1);
+    return ({
+        success: true
+    });
+};
