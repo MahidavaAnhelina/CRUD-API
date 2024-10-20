@@ -1,6 +1,7 @@
 import {IncomingMessage, ServerResponse} from "node:http";
 import {getUsersController} from "./getUsersController";
 import {getUserByIdController} from "./getUserByIdController";
+import {createUserController} from "./createUserController";
 
 export const userController = (req: IncomingMessage, res: ServerResponse, userId: string) => {
     // will be parsing here by status
@@ -15,9 +16,13 @@ export const userController = (req: IncomingMessage, res: ServerResponse, userId
             }
             break;
         }
-        //api/users
-        //api/users/{userId}
+        //api/users/ + body
         case 'POST': {
+            createUserController(req, res);
+            break;
+        }
+        //api/users/{userId} + body
+        case 'PUT': {
             break;
         }
         //api/users/{userId}

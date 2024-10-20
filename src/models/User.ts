@@ -11,5 +11,7 @@ export interface User {
 export const users: User[] = []
 
 export const createUser = (username: string, age: number, hobbies: string[]): User => {
-    return { id: uuidv4(), username, age, hobbies }
+    const newUser =  { id: uuidv4(), username, age, hobbies };
+    users.push(newUser);
+    return newUser;
 }

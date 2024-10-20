@@ -9,5 +9,5 @@ export const handleRequest = async (req: IncomingMessage, res: ServerResponse) =
         return res.end(JSON.stringify({ message: 'Endpoint not found' }))
     }
 
-    await userController(req, res, userId)
+    await userController(req, res, userId);
 };
