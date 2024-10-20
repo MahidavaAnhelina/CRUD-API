@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc && webpack --config webpack.config.js",
     "start:prod": "npm run build && node dist/bundle.js",
-    "start:dev": "ts-node-dev --respawn src/app.ts"
+    "start:dev": "ts-node-dev --respawn src/app.ts",
+    "start:multi": "npm run build && ts-node src/cluster.ts"
   },
   "author": "",
   "license": "ISC",
