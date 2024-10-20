@@ -17,8 +17,7 @@ export const createUserController = async (req: IncomingMessage, res: ServerResp
         res.writeHead(201, {'Content-Type': 'application/json'})
         res.end(JSON.stringify(newUser))
     } catch (err) {
-    console.log('TEST')
-    res.writeHead(500);
-    return res.end(JSON.stringify({ message: 'Unexpected server error', log: err }));
-}
+        res.writeHead(500);
+        return res.end(JSON.stringify({ message: 'Unexpected server error', log: err }));
+    }
 };
