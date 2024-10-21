@@ -65,6 +65,20 @@ Starts multiple instances of the application using the Node.js Cluster API. A lo
 npm run start:multi
 ```
 
+### Scripts
+
+Format code by prettier
+
+```bash
+npm run format
+```
+
+Run tests for api
+
+```bash
+npm run test
+```
+
 ## API Endpoints
 
 The base URL is `http://localhost:4000/api/users`
