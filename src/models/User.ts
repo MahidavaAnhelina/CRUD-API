@@ -1,0 +1,44 @@
+import { v4 as uuidv4 } from 'uuid'
+
+export interface User {
+  id: string // unique identifier (string, uuid) generated on server side
+  username: string // user's name (string, required)
+  age: number // user's age (number, required)
+  hobbies: string[] // user's hobbies (array of strings or empty array, required)
+}
+
+export const users: User[] = []
+
+export const createUser = (
+  username: string,
+  age: number,
+  hobbies: string[],
+): User => {
+  const newUser = { id: uuidv4(), username, age, hobbies }
+  users.push(newUser)
+  return newUser
+}
+
+export const updateUser = (newUserData: Partial<User>, userId: string) => {
+  let foundUserIndex = users.findIndex((user) => user.id === userId)!
+  users[foundUserIndex] = {
+    ...users[foundUserIndex],
+    ...newUserData,
+    hobbies: newUserData?.hobbies || users[foundUserIndex].hobbies,
+  }
+  return users[foundUserIndex]
+}
+
+export const deleteUser = (userId: string) => {
+  const deleteIndex = users.findIndex((u) => u.id === userId)
+  if (deleteIndex === -1) {
+    return {
+      success: false,
+    }
+  }
+
+  users.splice(deleteIndex, 1)
+  return {
+    success: true,
+  }
+}
